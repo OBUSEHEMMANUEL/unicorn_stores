@@ -9,4 +9,5 @@ public class Product {
     private BigDecimal price;
     private Category category;
     private int id;
+    private int quantity;
 }

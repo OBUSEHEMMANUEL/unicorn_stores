@@ -3,11 +3,13 @@ package store.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import store.data.dto.AddProductRequest;
+import store.data.dto.AddProductResponse;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductServiceImplTest {
-private final ProductService productService = new ProductServiceImpl();
+//private final ProductService productService = new ProductServiceImpl();
+private ProductService productService;
 private AddProductRequest addProductRequest;
 
     @BeforeEach
@@ -27,5 +29,9 @@ private AddProductRequest addProductRequest;
 
     }
     @Test
-    void getP
+    void getProductByIdTest(){
+        AddProductResponse response = productService.addProduct(addProductRequest);
+       var foundProduct = productService.getProductById(response.getProductId());
+        assertNotNull(foundProduct);
+    }
 }

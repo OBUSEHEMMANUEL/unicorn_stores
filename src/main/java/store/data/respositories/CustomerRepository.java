@@ -8,6 +8,8 @@ public interface CustomerRepository {
     Customer save(Customer customer);
     Customer findById(int id);
     List <Customer> findAll();
+
+    Customer findByByEmail(String email);
     void delete (Customer customer);
     void deleteAll();
 

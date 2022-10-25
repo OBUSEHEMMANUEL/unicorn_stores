@@ -1,4 +1,4 @@
-package store.data.respositories;
+package store.exception;
 
 public class vendorException extends RuntimeException {
     public vendorException(String message) {

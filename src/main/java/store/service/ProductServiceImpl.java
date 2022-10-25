@@ -1,28 +1,34 @@
 package store.service;
 
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import store.data.dto.AddProductRequest;
 import store.data.dto.AddProductResponse;
 import store.data.models.Category;
 import store.data.models.Product;
 import store.data.respositories.ProductRepository;
-import store.data.respositories.ProductRepositoryImpl;
 
 import java.math.BigDecimal;
-
+@
 public class ProductServiceImpl implements ProductService{
 
-    private final ProductRepository productRepository = new ProductRepositoryImpl();
+    @Autowired
+    private ProductRepository productRepository;
     @Override
     public AddProductResponse addProduct(AddProductRequest addProductRequest) {
         Product savedProduct = buildProduct(addProductRequest);
-
         AddProductResponse response = buildProductRegistrationResponse(savedProduct);
         return response;
     }
 
     @Override
     public Product getProductById(int id) {
-        return null;
+        return productRepository.findById(id);
+    }
+
+    @Override
+    public Product save(Product product) {
+        return productRepository.save(product);
     }
 
     private Product buildProduct(AddProductRequest addProductRequest) {
@@ -37,6 +43,7 @@ public class ProductServiceImpl implements ProductService{
     private AddProductResponse buildProductRegistrationResponse(Product savedProduct) {
         AddProductResponse response = new AddProductResponse();
         response.setMessage("product created");
+        System.out.println("here---> "+savedProduct.getId());
         response.setProductId(savedProduct.getId());
         response.setStatusCode(201);
         return response;

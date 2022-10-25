@@ -13,8 +13,4 @@ import java.util.Set;
 public class Vendor extends User{
     private String storeName;
     private Set<String> storeAddress = new HashSet<>();
-
-
-    public void save() {
-    }
 }
